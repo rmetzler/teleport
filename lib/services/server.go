@@ -23,6 +23,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/gravitational/teleport"
 	"github.com/gravitational/teleport/lib/defaults"
 	"github.com/gravitational/teleport/lib/utils"
 
@@ -78,6 +79,18 @@ type Server interface {
 	LabelsString() string
 	// CheckAndSetDefaults checks and set default values for any missing fields.
 	CheckAndSetDefaults() error
+
+	// GetProtocol gets the protocol of this application. At the moment
+	// only HTTPS is supported.
+	GetProtocol() string
+	// SetProtocol sets the protocol of this application. At the moment
+	// only HTTPS is supported.
+	SetProtocol(string)
+
+	// GetInternalAddr gets the internal address of the application.
+	GetInternalAddr() string
+	// SetInternalAddr sets the internal address of the application.
+	SetInternalAddr(string)
 }
 
 // ServersToV1 converts list of servers to slice of V1 style ones
@@ -249,6 +262,30 @@ func (s *ServerV2) GetCmdLabels() map[string]CommandLabel {
 	return out
 }
 
+// GetProtocol gets the protocol supported by this server.
+func (s *ServerV2) GetProtocol() string {
+	if s.Spec.Protocol == "" {
+		return teleport.ServerProtocolSSH
+	}
+	return s.Spec.Protocol
+}
+
+// SetProtocol sets the protocol of this application. At the moment
+// only HTTPS is supported.
+func (s *ServerV2) SetProtocol(protocol string) {
+	s.Spec.Protocol = protocol
+}
+
+// GetInternalAddr gets the internal address of the application.
+func (s *ServerV2) GetInternalAddr() string {
+	return s.Spec.InternalAddr
+}
+
+// SetInternalAddr sets the internal address of the application.
+func (s *ServerV2) SetInternalAddr(internalAddr string) {
+	s.Spec.InternalAddr = internalAddr
+}
+
 func (s *ServerV2) String() string {
 	return fmt.Sprintf("Server(name=%v, namespace=%v, addr=%v, labels=%v)", s.Metadata.Name, s.Metadata.Namespace, s.Spec.Addr, s.Metadata.Labels)
 }
@@ -362,6 +399,13 @@ func CompareServers(a, b Server) int {
 	if a.GetTeleportVersion() != b.GetTeleportVersion() {
 		return Different
 	}
+	if a.GetProtocol() != b.GetProtocol() {
+		return Different
+	}
+	if a.GetInternalAddr() != b.GetInternalAddr() {
+		return Different
+	}
+
 	return Equal
 }
 
@@ -390,7 +434,9 @@ const ServerSpecV2Schema = `{
   "properties": {
 	"version": {"type": "string"},
     "addr": {"type": "string"},
+    "protocol": {"type": "string"},
     "public_addr": {"type": "string"},
+    "internal_addr": {"type": "string"},
     "hostname": {"type": "string"},
     "use_tunnel": {"type": "boolean"},
     "labels": {

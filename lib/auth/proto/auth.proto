@@ -203,6 +203,55 @@ message DeleteUserRequest {
     string Name = 1 [ (gogoproto.jsontag) = "name" ];
 }
 
+// GetAppRequest is the request message to fetch a single application.
+message GetAppRequest {
+    // Namespace is the namespace for the registered application.
+    string Namespace = 1 [ (gogoproto.jsontag) = "namespace" ];
+    // Name is the name of the application being requested.
+    string Name = 2 [ (gogoproto.jsontag) = "name" ];
+    // SkipValidation is used to not use JSON schema validation for
+    // performance reasons.
+    bool SkipValidation = 3 [ (gogoproto.jsontag) = "skip_validation" ];
+}
+
+// GetAppResponse is the response message to fetch a single application.
+message GetAppResponse {
+    // App is an services.Server that represents an application.
+    services.ServerV2 App = 1 [ (gogoproto.jsontag) = "app" ];
+}
+
+// GetAppsRequest is the request message for all registered applications.
+message GetAppsRequest {
+    // Namespace is the namespace for the registered application.
+    string Namespace = 1 [ (gogoproto.jsontag) = "namespace" ];
+    // SkipValidation is used to not use JSON schema validation for
+    // performance reasons.
+    bool SkipValidation = 2 [ (gogoproto.jsontag) = "skip_validation" ];
+}
+
+// GetAppsResponse is the response message for all registered applications.
+message GetAppsResponse {
+    // Apps is a slice of services.Server that represent applications.
+    repeated services.ServerV2 Apps = 1 [ (gogoproto.jsontag) = "apps" ];
+}
+
+// UpsertAppRequest is the request message to registered and application.
+message UpsertAppRequest { services.ServerV2 App = 1 [ (gogoproto.jsontag) = "app" ]; }
+
+// DeleteAppRequest is the request message to delete an application.
+message DeleteAppRequest {
+    // Namespace is the namespace for the registered application.
+    string Namespace = 1 [ (gogoproto.jsontag) = "namespace" ];
+    // Name is the name of the application to delete.
+    string Name = 2 [ (gogoproto.jsontag) = "name" ];
+}
+
+// DeleteAllAppsRequest is the request message to delete all applications.
+message DeleteAllAppsRequest {
+    // Namespace is the namespace for the registered application.
+    string Namespace = 1 [ (gogoproto.jsontag) = "namespace" ];
+}
+
 // AuthService is authentication/authorization service implementation
 service AuthService {
     // SendKeepAlives allows node to send a stream of keep alive requests
@@ -248,4 +297,15 @@ service AuthService {
     rpc UpdateUser(services.UserV2) returns (google.protobuf.Empty);
     // DeleteUser deletes an exisitng user in a backend by username.
     rpc DeleteUser(DeleteUserRequest) returns (google.protobuf.Empty);
+
+    // GetApp returns an applications.
+    rpc GetApp(GetAppRequest) returns (GetAppResponse);
+    // GetApps returns all registered applications.
+    rpc GetApps(GetAppsRequest) returns (GetAppsResponse);
+    // UpsertApp registers an application with a TTL.
+    rpc UpsertApp(UpsertAppRequest) returns (services.KeepAlive);
+    // DeleteApp un-registers an application.
+    rpc DeleteApp(DeleteAppRequest) returns (google.protobuf.Empty);
+    // DeleteAllApp un-registers an application.
+    rpc DeleteAllApps(DeleteAllAppsRequest) returns (google.protobuf.Empty);
 }
