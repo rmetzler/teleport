@@ -37,7 +37,7 @@ func (s *SemaphoreSuite) SetUpSuite(c *C) {
 }
 
 func (s *SemaphoreSuite) TestAcquireSemaphoreParams(c *C) {
-	ok := AcquireSemaphore{
+	ok := AcquireSemaphoreParams{
 		SemaphoreKind: "foo",
 		SemaphoreName: "bar",
 		MaxLeases:     1,

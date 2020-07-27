@@ -456,7 +456,8 @@ func (s *Server) HandleConnection(conn net.Conn) {
 		// if newConnHandler was set, then we have additional setup work
 		// to do before we can begin serving normally.  Errors returned
 		// from a NewConnHandler are rejections.
-		if err := s.newConnHandler.HandleNewConn(ccx); err != nil {
+		ctx, err = s.newConnHandler.HandleNewConn(ctx, ccx)
+		if err != nil {
 			s.Errorf("Rejecting inbound ssh connection: %v", err)
 			// Immediately dropping the ssh connection results in an
 			// EOF error for the client.  We therefore wait briefly
@@ -465,7 +466,9 @@ func (s *Server) HandleConnection(conn net.Conn) {
 			// error.
 			select {
 			case firstChan := <-chans:
-				firstChan.Reject(ssh.Prohibited, err.Error())
+				if firstChan != nil {
+					firstChan.Reject(ssh.Prohibited, err.Error())
+				}
 			case <-s.closeContext.Done():
 			case <-time.After(time.Second * 1):
 			}
@@ -523,15 +526,16 @@ func (f NewChanHandlerFunc) HandleNewChan(ctx context.Context, ccx *ConnectionCo
 }
 
 // NewConnHandler is called once per incoming connection.
-// Errors terminate the incoming connection.
+// Errors terminate the incoming connection.  The returned context
+// must be the same as, or a child of, the passed in context.
 type NewConnHandler interface {
-	HandleNewConn(*ConnectionContext) error
+	HandleNewConn(ctx context.Context, ccx *ConnectionContext) (context.Context, error)
 }
 
-type NewConnHandlerFunc func(*ConnectionContext) error
+type NewConnHandlerFunc func(ctx context.Context, ccx *ConnectionContext) (context.Context, error)
 
-func (f NewConnHandlerFunc) HandleNewConn(ccx *ConnectionContext) error {
-	return f(ccx)
+func (f NewConnHandlerFunc) HandleNewConn(ctx context.Context, ccx *ConnectionContext) (context.Context, error) {
+	return f(ctx, ccx)
 }
 
 type AuthMethods struct {

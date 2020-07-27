@@ -853,16 +853,16 @@ func (s *Server) HandleRequest(r *ssh.Request) {
 // HandleNewConn is called by sshutils.Server once for each new incoming connection,
 // prior to handling any channels or requests.  Currently this callback's only
 // function is to apply concurrent session control limits.
-func (s *Server) HandleNewConn(ccx *sshutils.ConnectionContext) error {
+func (s *Server) HandleNewConn(ctx context.Context, ccx *sshutils.ConnectionContext) (context.Context, error) {
 	//const leaseExpiry = time.Minute * 2
 	const leaseExpiry = time.Second * 30
 	// we don't currently have any work to do in non-node contexts.
 	if s.Component() != teleport.ComponentNode {
-		return nil
+		return ctx, nil
 	}
 	identityContext, err := s.authHandlers.CreateIdentityContext(ccx.ServerConn)
 	if err != nil {
-		return trace.Wrap(err)
+		return ctx, trace.Wrap(err)
 	}
 
 	maxConcurrentSessions := identityContext.RoleSet.MaxConcurrentSessions()
@@ -870,10 +870,10 @@ func (s *Server) HandleNewConn(ccx *sshutils.ConnectionContext) error {
 	if maxConcurrentSessions == 0 {
 		// concurrent session control is not active, nothing
 		// else needs to be done here.
-		return nil
+		return ctx, nil
 	}
 
-	lock, err := services.AcquireSemaphoreLock(ccx, services.SemaphoreLockConfig{
+	lock, err := services.AcquireSemaphoreLock(ctx, services.SemaphoreLockConfig{
 		Service: s.authService,
 		Expiry:  leaseExpiry,
 		Params: services.AcquireSemaphoreParams{
@@ -884,7 +884,7 @@ func (s *Server) HandleNewConn(ccx *sshutils.ConnectionContext) error {
 		},
 	})
 	if err != nil {
-		return trace.Wrap(err)
+		return ctx, trace.Wrap(err)
 	}
 	// ensure that losing the lock closes the connection context.  Under normal
 	// conditions, cancellation propagates from the connection context to the
@@ -896,7 +896,7 @@ func (s *Server) HandleNewConn(ccx *sshutils.ConnectionContext) error {
 		<-lock.Done()
 		ccx.Close()
 	}()
-	return nil
+	return ctx, nil
 }
 
 // HandleNewChan is called when new channel is opened
