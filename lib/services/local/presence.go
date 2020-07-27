@@ -1,5 +1,5 @@
 /*
-Copyright 2015-2019 Gravitational, Inc.
+Copyright 2015-2020 Gravitational, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -900,7 +900,7 @@ func (s *PresenceService) GetSemaphores(ctx context.Context, filter services.Sem
 		if filter.SemaphoreKind != "" {
 			startKey = backend.Key(semaphoresPrefix, filter.SemaphoreKind)
 		} else {
-			startKey = backend.Key(semaphoresPrefix, filter.SemaphoreKind)
+			startKey = backend.Key(semaphoresPrefix)
 		}
 		result, err := s.GetRange(ctx, startKey, backend.RangeEnd(startKey), backend.NoLimit)
 		if err != nil {
@@ -936,6 +936,9 @@ func (s *PresenceService) DeleteSemaphores(ctx context.Context, filter services.
 			return trace.Wrap(err)
 		}
 		return nil
+	}
+	if filter.SemaphoreKind == "" && filter.SemaphoreName != "" {
+		return trace.BadParameter("cannot delete semaphore by name without kind")
 	}
 	var startKey []byte
 	if filter.SemaphoreKind != "" {

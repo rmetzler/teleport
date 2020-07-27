@@ -42,6 +42,8 @@ type SemaphoreCommand struct {
 
 	format string
 
+	force bool
+
 	semList   *kingpin.CmdClause
 	semDelete *kingpin.CmdClause
 	semCancel *kingpin.CmdClause
@@ -64,6 +66,7 @@ func (c *SemaphoreCommand) Initialize(app *kingpin.Application, config *service.
 	c.semList.Flag("format", "Output format, 'text' or 'json'").Hidden().Default(teleport.Text).StringVar(&c.format)
 
 	c.semDelete = sem.Command("rm", "Delete all matching semaphores").Hidden().Alias("delete")
+	c.semDelete.Flag("force", "Permits unconstrained deletions").Short('f').BoolVar(&c.force)
 
 	c.semCancel = sem.Command("cancel", "Cancel a specific semaphore lease").Hidden()
 	c.semCancel.Arg("lease-id", "Unique ID of the target lease").Required().StringVar(&c.leaseID)
@@ -106,7 +109,11 @@ func (c *SemaphoreCommand) List(client auth.ClientI) error {
 
 // Delete deletes all matching semaphores.
 func (c *SemaphoreCommand) Delete(client auth.ClientI) error {
-	return trace.Wrap(client.DeleteSemaphores(context.TODO(), c.filter()))
+	f := c.filter()
+	if !c.force && (f.SemaphoreKind == "" || f.SemaphoreName == "") {
+		return trace.BadParameter("kind and name must be specified; use -f/--force to override (dangerous)")
+	}
+	return trace.Wrap(client.DeleteSemaphores(context.TODO(), f))
 }
 
 // Cancel a specific semaphore lease.
