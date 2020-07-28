@@ -63,7 +63,7 @@ func (c *SemaphoreCommand) Initialize(app *kingpin.Application, config *service.
 	sem := app.Command("sem", "Manage cluster-level semaphores").Alias("semaphores").Alias("semaphore")
 
 	c.semList = sem.Command("ls", "List all matching semaphores").Alias("list")
-	c.semList.Flag("format", "Output format, 'text' or 'json'").Hidden().Default(teleport.Text).StringVar(&c.format)
+	c.semList.Flag("format", "Output format, 'text' or 'json'").Default(teleport.Text).StringVar(&c.format)
 
 	c.semDelete = sem.Command("rm", "Delete all matching semaphores").Hidden().Alias("delete")
 	c.semDelete.Flag("force", "Permits unconstrained deletions").Short('f').BoolVar(&c.force)
