@@ -1018,7 +1018,7 @@ func (s *ServicesTestSuite) ClusterConfig(c *check.C, opts ...SuiteOption) {
 // the same property holds for releasing semaphores; release operations are
 // best-effort and allowed to fail.
 func (s *ServicesTestSuite) SemaphoreContention(c *check.C) {
-	const locks int64 = 40
+	const locks int64 = 20
 	cfg := services.SemaphoreLockConfig{
 		Service: s.PresenceS,
 		Expiry:  time.Hour,
