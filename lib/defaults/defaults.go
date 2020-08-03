@@ -360,6 +360,11 @@ var (
 	// CASignatureAlgorithm is the default signing algorithm to use when
 	// creating new SSH CAs.
 	CASignatureAlgorithm = ssh.SigAlgoRSASHA2512
+
+	// SessionControlTimeout is the maximum amount of time a controlled session
+	// may persist after contact with the auth server is lost (sessctl semaphore
+	// leases are refreshed at a rate of ~1/2 this duration).
+	SessionControlTimeout = time.Minute * 2
 )
 
 // Default connection limits, they can be applied separately on any of the Teleport

@@ -854,12 +854,11 @@ func (s *Server) HandleRequest(r *ssh.Request) {
 // prior to handling any channels or requests.  Currently this callback's only
 // function is to apply concurrent session control limits.
 func (s *Server) HandleNewConn(ctx context.Context, ccx *sshutils.ConnectionContext) (context.Context, error) {
-	//const leaseExpiry = time.Minute * 2
-	const leaseExpiry = time.Second * 30
 	// we don't currently have any work to do in non-node contexts.
 	if s.Component() != teleport.ComponentNode {
 		return ctx, nil
 	}
+
 	identityContext, err := s.authHandlers.CreateIdentityContext(ccx.ServerConn)
 	if err != nil {
 		return ctx, trace.Wrap(err)
@@ -873,9 +872,14 @@ func (s *Server) HandleNewConn(ctx context.Context, ccx *sshutils.ConnectionCont
 		return ctx, nil
 	}
 
+	cfg, err := s.authService.GetClusterConfig()
+	if err != nil {
+		return ctx, trace.Wrap(err)
+	}
+
 	lock, err := services.AcquireSemaphoreLock(ctx, services.SemaphoreLockConfig{
 		Service: s.authService,
-		Expiry:  leaseExpiry,
+		Expiry:  cfg.GetSessionControlTimeout(),
 		Params: services.AcquireSemaphoreParams{
 			SemaphoreKind: services.SemaphoreKindSessionControl,
 			SemaphoreName: identityContext.TeleportUser,
@@ -884,6 +888,14 @@ func (s *Server) HandleNewConn(ctx context.Context, ccx *sshutils.ConnectionCont
 		},
 	})
 	if err != nil {
+		if trace.IsLimitExceeded(err) {
+			// user has exceeded their max concurrent sessions.
+			s.EmitAuditEvent(events.SessionControlLimit, events.EventFields{
+				events.EventProtocol:   events.EventProtocolSSH,
+				events.EventUser:       identityContext.TeleportUser,
+				events.SessionServerID: s.uuid,
+			})
+		}
 		return ctx, trace.Wrap(err)
 	}
 	// ensure that losing the lock closes the connection context.  Under normal

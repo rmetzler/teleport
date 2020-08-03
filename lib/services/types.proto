@@ -396,6 +396,12 @@ message ClusterConfigSpecV3 {
 
     // LocalAuth is true if local authentication is enabled.
     bool LocalAuth = 9 [ (gogoproto.jsontag) = "local_auth", (gogoproto.casttype) = "Bool" ];
+
+    // SessionControlTimeout is the session control lease expiry and defines
+    // the upper limit of how long a node may be out of contact with the auth
+    // server before it begins terminating controlled sessions.
+    int64 SessionControlTimeout = 10
+        [ (gogoproto.jsontag) = "session_control_timeout", (gogoproto.casttype) = "Duration" ];
 }
 
 // AuditConfig represents audit log settings in the cluster

@@ -458,7 +458,7 @@ func (s *Server) HandleConnection(conn net.Conn) {
 		// from a NewConnHandler are rejections.
 		ctx, err = s.newConnHandler.HandleNewConn(ctx, ccx)
 		if err != nil {
-			s.Errorf("Rejecting inbound ssh connection: %v", err)
+			s.Warnf("Rejecting inbound ssh connection: %v", err)
 			// Immediately dropping the ssh connection results in an
 			// EOF error for the client.  We therefore wait briefly
 			// to see if the client opens a channel, which will give

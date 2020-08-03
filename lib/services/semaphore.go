@@ -57,12 +57,11 @@ type SemaphoreLockConfig struct {
 }
 
 func (l *SemaphoreLockConfig) CheckAndSetDefaults() error {
-	const defaultSemaphoreExpiry = time.Minute * 2
 	if l.Service == nil {
 		return trace.BadParameter("missing semaphore service")
 	}
 	if l.Expiry == 0 {
-		l.Expiry = defaultSemaphoreExpiry
+		l.Expiry = defaults.SessionControlTimeout
 	}
 	if l.Expiry < time.Millisecond {
 		return trace.BadParameter("sub-millisecond lease expiry is not supported: %v", l.Expiry)
@@ -156,14 +155,21 @@ func AcquireSemaphoreLock(ctx context.Context, cfg SemaphoreLockConfig) (*Semaph
 		cond:     sync.NewCond(&sync.Mutex{}),
 	}
 	go func(lease SemaphoreLease) {
+		var nodrop bool
 		defer func() {
 			lock.Cancel()
 			defer lock.finish(err)
+			if nodrop {
+				// non-standard exit conditions; don't bother handling
+				// cancellation/expiry.
+				return
+			}
 			if lease.Expires.After(time.Now().UTC()) {
 				// parent context is closed. create orphan context with generous
 				// timeout for lease cancellation scope.  this will not block any
 				// caller that is not explicitly waiting on the final error value.
-				cancelContext, _ := context.WithTimeout(context.Background(), lock.cfg.Expiry/4)
+				cancelContext, cancel := context.WithTimeout(context.Background(), lock.cfg.Expiry/4)
+				defer cancel()
 				err = lock.cfg.Service.CancelSemaphoreLease(cancelContext, lease)
 				if err != nil {
 					log.Warnf("Failed to cancel semaphore lease %s/%s: %v", lease.SemaphoreKind, lease.SemaphoreName, err)
@@ -180,12 +186,21 @@ func AcquireSemaphoreLock(ctx context.Context, cfg SemaphoreLockConfig) (*Semaph
 		for {
 			select {
 			case tick := <-ticker.C:
-				leaseContext, _ := context.WithDeadline(ctx, lease.Expires)
+				leaseContext, leaseCancel := context.WithDeadline(ctx, lease.Expires)
 				nextLease := lease
 				nextLease.Expires = tick.Add(lock.cfg.Expiry)
 				for {
 					err = lock.cfg.Service.KeepAliveSemaphoreLease(leaseContext, nextLease)
+					if trace.IsNotFound(err) {
+						leaseCancel()
+						// semaphore and/or lease no longer exist; best to log the error
+						// and exit immediately.
+						log.Warnf("Halting keepalive on semaphore %s/%s early: %v", lease.SemaphoreKind, lease.SemaphoreName, err)
+						nodrop = true
+						return
+					}
 					if err == nil {
+						leaseCancel()
 						lease = nextLease
 						retry.Reset()
 						select {
@@ -199,10 +214,10 @@ func AcquireSemaphoreLock(ctx context.Context, cfg SemaphoreLockConfig) (*Semaph
 					select {
 					case <-retry.After():
 					case <-leaseContext.Done():
+						leaseCancel() // demanded by linter
 						return
 					}
 				}
-				return
 			case <-ctx.Done():
 				return
 			}
@@ -278,9 +293,9 @@ type Semaphore interface {
 	Contains(lease SemaphoreLease) bool
 	// Acquire attempts to acquire a lease with this semaphore.
 	Acquire(params AcquireSemaphoreParams) (*SemaphoreLease, error)
-	// KeepAlive attempts to update the expiry of an existant lease.
+	// KeepAlive attempts to update the expiry of an existent lease.
 	KeepAlive(lease SemaphoreLease) error
-	// Cancel attempts to cancel an existant lease.
+	// Cancel attempts to cancel an existent lease.
 	Cancel(lease SemaphoreLease) error
 	// LeaseCount returns the number of active leases.
 	LeaseCount() int64

@@ -257,6 +257,11 @@ var (
 		Name: SAMLConnectorDeletedEvent,
 		Code: SAMLConnectorDeletedCode,
 	}
+	// SessionControlLimit is emitted when a user hits `max_concurrent_sessions`.
+	SessionControlLimit = Event{
+		Name: SessionControlLimitEvent,
+		Code: SessionControlLimitCode,
+	}
 )
 
 // There is no strict algorithm for picking an event code, however existing
@@ -285,6 +290,10 @@ const (
 	UserDeleteCode = "T1004I"
 	// UserPasswordChangeCode is an event code for when user changes their own password.
 	UserPasswordChangeCode = "T1005I"
+
+	// SessionControlLimit is an event code for when a user's attempt to create an
+	// authenticated session has been rejected due to exceeding `max_concurrent_sessions`.
+	SessionControlLimitCode = "T1006W"
 
 	// SessionStartCode is the session start event code.
 	SessionStartCode = "T2000I"

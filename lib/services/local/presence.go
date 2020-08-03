@@ -667,8 +667,8 @@ var jitter = utils.NewJitter()
 func (s *PresenceService) AcquireSemaphore(ctx context.Context, req services.AcquireSemaphoreParams) (*services.SemaphoreLease, error) {
 	// this combination of backoff parameters leads to worst-case total time spent
 	// in backoff between 1200ms and 2400ms depending on jitter.  tests are in
-	// place to verify that this is sufficient to resolve a 40-lease contention
-	// event, which is far worse than should ever occur in practice.
+	// place to verify that this is sufficient to resolve a 20-lease contention
+	// event, which is worse than should ever occur in practice.
 	const baseBackoff = time.Millisecond * 400
 	const acquireAttempts int64 = 4
 
@@ -725,7 +725,7 @@ func (s *PresenceService) AcquireSemaphore(ctx context.Context, req services.Acq
 // initSemaphore attempts to initialize/acquire a semaphore which does not yet exist.
 // Returns AlreadyExistsError if the semaphore is concurrently created.
 func (s *PresenceService) initSemaphore(ctx context.Context, key []byte, req services.AcquireSemaphoreParams) (*services.SemaphoreLease, error) {
-	// create a new empty semphore resource configured to specificaly match
+	// create a new empty semphore resource configured to specifically match
 	// this acquire request.
 	sem, err := req.ConfigureSemaphore()
 	if err != nil {
@@ -795,7 +795,7 @@ func (s *PresenceService) KeepAliveSemaphoreLease(ctx context.Context, lease ser
 	}
 
 	if lease.Expires.Before(s.Clock().Now().UTC()) {
-		return trace.BadParameter("the lease %v has expired at %v", lease.LeaseID, lease.Expires)
+		return trace.BadParameter("lease %v has expired at %v", lease.LeaseID, lease.Expires)
 	}
 
 	key := backend.Key(semaphoresPrefix, lease.SemaphoreKind, lease.SemaphoreName)
@@ -806,6 +806,9 @@ func (s *PresenceService) KeepAliveSemaphoreLease(ctx context.Context, lease ser
 
 	sem, err := services.GetSemaphoreMarshaler().Unmarshal(item.Value)
 	if err != nil {
+		if trace.IsNotFound(err) {
+			return trace.NotFound("cannot keepalive, semaphore not found: %s/%s", lease.SemaphoreKind, lease.SemaphoreName)
+		}
 		return trace.Wrap(err)
 	}
 
@@ -829,7 +832,7 @@ func (s *PresenceService) KeepAliveSemaphoreLease(ctx context.Context, lease ser
 	_, err = s.CompareAndSwap(ctx, *item, newItem)
 	if err != nil {
 		if trace.IsCompareFailed(err) {
-			return trace.CompareFailed("semaphore %v/%v hase been concurrently updated, try again", sem.GetSubKind(), sem.GetName())
+			return trace.CompareFailed("semaphore %v/%v has been concurrently updated, try again", sem.GetSubKind(), sem.GetName())
 		}
 		return trace.Wrap(err)
 	}

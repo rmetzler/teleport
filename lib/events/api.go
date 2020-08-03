@@ -326,6 +326,10 @@ const (
 	SAMLConnectorCreatedEvent = "saml.created"
 	// SAMLConnectorDeletedEvent fires when SAML connector is deleted.
 	SAMLConnectorDeletedEvent = "saml.deleted"
+
+	// SessionControlLimit fires when a user's attempt to create an authenticated
+	// session has been rejected due to exceeding `max_concurrent_sessions`.
+	SessionControlLimitEvent = "sessctl.limit"
 )
 
 const (

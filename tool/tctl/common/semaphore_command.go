@@ -27,6 +27,7 @@ import (
 	"github.com/gravitational/teleport"
 	"github.com/gravitational/teleport/lib/asciitable"
 	"github.com/gravitational/teleport/lib/auth"
+	"github.com/gravitational/teleport/lib/defaults"
 	"github.com/gravitational/teleport/lib/service"
 	"github.com/gravitational/teleport/lib/services"
 	"github.com/gravitational/trace"
@@ -36,103 +37,117 @@ import (
 type SemaphoreCommand struct {
 	config *service.Config
 
-	name    string
-	kind    string
-	leaseID string
+	username string
+	leaseID  string
 
 	format string
 
-	force bool
+	force   bool
+	verbose bool
 
-	semList   *kingpin.CmdClause
-	semDelete *kingpin.CmdClause
-	semCancel *kingpin.CmdClause
-}
-
-// setFilterFlags sets the filter flags for the supplied commands
-func (c *SemaphoreCommand) setFilterFlags(cmds ...*kingpin.CmdClause) {
-	for _, cmd := range cmds {
-		cmd.Flag("kind", fmt.Sprintf("Semaphore kind (e.g. %s)", services.SemaphoreKindSessionControl)).StringVar(&c.kind)
-		cmd.Flag("name", "Semaphore name (e.g. alice@example.com)").StringVar(&c.name)
-	}
+	scList   *kingpin.CmdClause
+	scDelete *kingpin.CmdClause
 }
 
 // Initialize allows SemaphoreCommand to plug itself into the CLI parser
 func (c *SemaphoreCommand) Initialize(app *kingpin.Application, config *service.Config) {
 	c.config = config
-	sem := app.Command("sem", "Manage cluster-level semaphores").Alias("semaphores").Alias("semaphore")
 
-	c.semList = sem.Command("ls", "List all matching semaphores").Alias("list")
-	c.semList.Flag("format", "Output format, 'text' or 'json'").Default(teleport.Text).StringVar(&c.format)
+	sc := app.Command("sessctl", "Session-control introspection & management").Alias("session-control")
 
-	c.semDelete = sem.Command("rm", "Delete all matching semaphores").Hidden().Alias("delete")
-	c.semDelete.Flag("force", "Permits unconstrained deletions").Short('f').BoolVar(&c.force)
+	c.scList = sc.Command("ls", "List active session-control leases").Alias("list")
+	c.scList.Flag("format", "Output format, 'text' or 'json'").Default(teleport.Text).StringVar(&c.format)
+	c.scList.Flag("verbose", "Output verbose lease details").Short('v').BoolVar(&c.verbose)
+	c.scList.Flag("user", "Filter output by username").StringVar(&c.username)
 
-	c.semCancel = sem.Command("cancel", "Cancel a specific semaphore lease").Hidden()
-	c.semCancel.Arg("lease-id", "Unique ID of the target lease").Required().StringVar(&c.leaseID)
-
-	c.setFilterFlags(c.semList, c.semDelete, c.semCancel)
+	c.scDelete = sc.Command("rm", "Delete active session-control leases").Alias("delete").Hidden()
+	c.scDelete.Flag("force", "Permits unconstrained deletions").Short('f').BoolVar(&c.force)
+	c.scDelete.Flag("user", "Username of target").StringVar(&c.username)
+	c.scDelete.Flag("lease", "Lease ID of target").StringVar(&c.leaseID)
 }
 
 // TryRun takes the CLI command as an argument (like "access-request list") and executes it.
 func (c *SemaphoreCommand) TryRun(cmd string, client auth.ClientI) (match bool, err error) {
 	switch cmd {
-	case c.semList.FullCommand():
+	case c.scList.FullCommand():
 		err = c.List(client)
-	case c.semDelete.FullCommand():
+	case c.scDelete.FullCommand():
 		err = c.Delete(client)
-	case c.semCancel.FullCommand():
-		err = c.Cancel(client)
 	default:
 		return false, nil
 	}
 	return true, trace.Wrap(err)
 }
 
-// filter constructs a SemaphoreFilter matching the filter parameters
-// supplied to the semaphore command.
-func (c *SemaphoreCommand) filter() services.SemaphoreFilter {
-	return services.SemaphoreFilter{
-		SemaphoreName: c.name,
-		SemaphoreKind: c.kind,
-	}
-}
-
 // List lists all matching semaphores.
 func (c *SemaphoreCommand) List(client auth.ClientI) error {
-	sems, err := client.GetSemaphores(context.TODO(), c.filter())
+	sems, err := client.GetSemaphores(context.TODO(), services.SemaphoreFilter{
+		SemaphoreName: c.username,
+		SemaphoreKind: services.SemaphoreKindSessionControl,
+	})
 	if err != nil {
 		return trace.Wrap(err)
 	}
-	return trace.Wrap(c.PrintSemaphores(sems, c.format))
+	return trace.Wrap(c.PrintSemaphores(client, sems, c.format, c.verbose))
 }
 
 // Delete deletes all matching semaphores.
 func (c *SemaphoreCommand) Delete(client auth.ClientI) error {
-	f := c.filter()
-	if !c.force && (f.SemaphoreKind == "" || f.SemaphoreName == "") {
-		return trace.BadParameter("kind and name must be specified; use -f/--force to override (dangerous)")
+	if c.leaseID != "" {
+		if c.username == "" {
+			return trace.BadParameter("cannod resolve lease %q without username", c.leaseID)
+		}
+		return trace.Wrap(client.CancelSemaphoreLease(context.TODO(), services.SemaphoreLease{
+			SemaphoreKind: services.SemaphoreKindSessionControl,
+			SemaphoreName: c.username,
+			LeaseID:       c.leaseID,
+			Expires:       time.Now().UTC().Add(time.Minute),
+		}))
 	}
-	return trace.Wrap(client.DeleteSemaphores(context.TODO(), f))
-}
-
-// Cancel a specific semaphore lease.
-func (c *SemaphoreCommand) Cancel(client auth.ClientI) error {
-	return trace.Wrap(client.CancelSemaphoreLease(context.TODO(), services.SemaphoreLease{
-		SemaphoreKind: c.kind,
-		SemaphoreName: c.name,
-		LeaseID:       c.leaseID,
-		Expires:       time.Now().UTC().Add(time.Minute),
+	if !c.force && c.username == "" {
+		return trace.BadParameter("user name must be specified; use -f/--force to override (dangerous)")
+	}
+	return trace.Wrap(client.DeleteSemaphores(context.TODO(), services.SemaphoreFilter{
+		SemaphoreName: c.username,
+		SemaphoreKind: services.SemaphoreKindSessionControl,
 	}))
 }
 
-func (c *SemaphoreCommand) PrintSemaphores(sems []services.Semaphore, format string) error {
-	if format == teleport.Text {
-		table := asciitable.MakeTable([]string{"Kind", "Name", "LeaseID", "Holder", "Expires"})
+func (c *SemaphoreCommand) PrintSemaphores(client auth.ClientI, sems []services.Semaphore, format string, verbose bool) error {
+	switch {
+	case format == teleport.Text && !verbose:
+		// resolve node hostnames and print "pretty" table.
+		nodes, err := client.GetNodes(defaults.Namespace)
+		if err != nil {
+			return trace.Wrap(err)
+		}
+		table := asciitable.MakeTable([]string{"User", "LeaseID", "Host"})
+		for _, sem := range sems {
+			for _, ref := range sem.LeaseRefs() {
+				nodeName := ref.Holder
+				for _, node := range nodes {
+					if node.GetName() == ref.Holder {
+						if node.GetHostname() != "" {
+							nodeName = node.GetHostname()
+						}
+						break
+					}
+				}
+				table.AddRow([]string{
+					sem.GetName(),
+					ref.LeaseID,
+					nodeName,
+				})
+			}
+		}
+		_, err = table.AsBuffer().WriteTo(os.Stdout)
+		return trace.Wrap(err)
+	case format == teleport.Text:
+		// print a verbose table containing raw semaphore lease data
+		table := asciitable.MakeTable([]string{"User", "LeaseID", "NodeID", "Expires"})
 		for _, sem := range sems {
 			for _, ref := range sem.LeaseRefs() {
 				table.AddRow([]string{
-					sem.GetSubKind(),
 					sem.GetName(),
 					ref.LeaseID,
 					ref.Holder,
@@ -142,7 +157,7 @@ func (c *SemaphoreCommand) PrintSemaphores(sems []services.Semaphore, format str
 		}
 		_, err := table.AsBuffer().WriteTo(os.Stdout)
 		return trace.Wrap(err)
-	} else {
+	default:
 		out, err := json.MarshalIndent(sems, "", "  ")
 		if err != nil {
 			return trace.Wrap(err, "failed to marshal semaphores")
