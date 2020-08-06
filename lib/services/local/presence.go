@@ -256,6 +256,10 @@ func (s *PresenceService) UpsertNode(server services.Server) (*services.KeepAliv
 	}, nil
 }
 
+// DELETE IN: 5.1.0.
+//
+// This logic has been moved to KeepAliveResource.
+//
 // KeepAliveNode updates node expiry
 func (s *PresenceService) KeepAliveNode(ctx context.Context, h services.KeepAlive) error {
 	if err := h.CheckAndSetDefaults(); err != nil {
@@ -725,6 +729,10 @@ func (s *PresenceService) GetApps(ctx context.Context, namespace string, opts ..
 // UpsertApp registers an application with a TTL. A services.KeepAlive is
 // returned that can be used to extend the TTL.
 func (s *PresenceService) UpsertApp(ctx context.Context, app services.Server) (*services.KeepAlive, error) {
+	if err := app.CheckAndSetDefaults(); err != nil {
+		return nil, trace.Wrap(err)
+	}
+
 	value, err := services.GetServerMarshaler().MarshalServer(app)
 	if err != nil {
 		return nil, trace.Wrap(err)
@@ -759,6 +767,25 @@ func (s *PresenceService) DeleteAllApps(ctx context.Context, namespace string) e
 func (s *PresenceService) DeleteApp(ctx context.Context, namespace string, name string) error {
 	key := backend.Key(appsPrefix, namespace, name)
 	return s.Delete(ctx, key)
+}
+
+// KeepAliveResource updates expiry time of the resource.
+func (s *PresenceService) KeepAliveResource(ctx context.Context, h services.KeepAlive) error {
+	if err := h.CheckAndSetDefaults(); err != nil {
+		return trace.Wrap(err)
+	}
+
+	// Update the prefix off the type information in the keep alive.
+	prefix := nodesPrefix
+	if h.GetType() == teleport.KeepAliveApp {
+		prefix = appsPrefix
+	}
+
+	err := s.KeepAlive(ctx, backend.Lease{
+		ID:  h.LeaseID,
+		Key: backend.Key(prefix, h.Namespace, h.Name),
+	}, h.Expires)
+	return trace.Wrap(err)
 }
 
 const (

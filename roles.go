@@ -37,6 +37,8 @@ const (
 	RoleWeb Role = "Web"
 	// RoleNode is a role for SSH node in the cluster
 	RoleNode Role = "Node"
+	// RoleApp is a role for a app proxy in the cluster.
+	RoleApp Role = "App"
 	// RoleProxy is a role for SSH proxy in the cluster
 	RoleProxy Role = "Proxy"
 	// RoleAdmin is admin role

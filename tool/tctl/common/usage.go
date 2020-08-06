@@ -59,4 +59,9 @@ Examples:
   SSH nodes send periodic heartbeat to the Auth service. This command prints
   the list of current online nodes.
 `
+
+	ListAppsHelp = `Notes:
+  Applications send periodic heartbeat to the Auth service. This command prints
+  the list of current online applications.
+`
 )

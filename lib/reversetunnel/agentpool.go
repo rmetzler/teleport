@@ -20,6 +20,7 @@ import (
 	"context"
 	"fmt"
 	"net"
+	"net/http"
 	"sync"
 	"time"
 
@@ -85,6 +86,9 @@ type AgentPoolConfig struct {
 	// Server is a SSH server that can handle a connection (perform a handshake
 	// then process). Only set with the agent is running within a node.
 	Server ServerHandler
+	// AppsServer is an application proxy (AAP) that forwards requests to the
+	// target node.
+	AppsServer http.Handler
 	// Component is the Teleport component this agent pool is running in. It can
 	// either be proxy (trusted clusters) or node (dial back).
 	Component string

@@ -48,8 +48,10 @@ type Server interface {
 	GetAllLabels() map[string]string
 	// GetLabels returns server's static label key pairs
 	GetLabels() map[string]string
-	// GetCmdLabels returns command labels
+	// GetCmdLabels gets command labels
 	GetCmdLabels() map[string]CommandLabel
+	// SetCmdLabels sets command labels.
+	SetCmdLabels(cmdLabels map[string]CommandLabel)
 	// GetPublicAddr is an optional field that returns the public address this cluster can be reached at.
 	GetPublicAddr() string
 	// GetRotation gets the state of certificate authority rotation.
@@ -260,6 +262,11 @@ func (s *ServerV2) GetCmdLabels() map[string]CommandLabel {
 		out[key] = &val
 	}
 	return out
+}
+
+// SetCmdLabels sets dynamic labels.
+func (s *ServerV2) SetCmdLabels(cmdLabels map[string]CommandLabel) {
+	s.Spec.CmdLabels = LabelsToV2(cmdLabels)
 }
 
 // GetProtocol gets the protocol supported by this server.

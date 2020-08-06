@@ -60,7 +60,15 @@ func (x Operation) String() string {
 	return proto.EnumName(Operation_name, int32(x))
 }
 func (Operation) EnumDescriptor() ([]byte, []int) {
+<<<<<<< HEAD
 	return fileDescriptor_auth_e02df4a36033d12b, []int{0}
+=======
+<<<<<<< HEAD
+	return fileDescriptor_auth_55c2a49deb8c39e6, []int{0}
+=======
+	return fileDescriptor_auth_e02df4a36033d12b, []int{0}
+>>>>>>> 657d58b88... Fix.
+>>>>>>> rjones/aap-proc
 }
 
 // Event returns cluster event
@@ -93,7 +101,15 @@ func (m *Event) Reset()         { *m = Event{} }
 func (m *Event) String() string { return proto.CompactTextString(m) }
 func (*Event) ProtoMessage()    {}
 func (*Event) Descriptor() ([]byte, []int) {
+<<<<<<< HEAD
 	return fileDescriptor_auth_e02df4a36033d12b, []int{0}
+=======
+<<<<<<< HEAD
+	return fileDescriptor_auth_55c2a49deb8c39e6, []int{0}
+=======
+	return fileDescriptor_auth_e02df4a36033d12b, []int{0}
+>>>>>>> 657d58b88... Fix.
+>>>>>>> rjones/aap-proc
 }
 func (m *Event) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -583,7 +599,15 @@ func (m *Watch) Reset()         { *m = Watch{} }
 func (m *Watch) String() string { return proto.CompactTextString(m) }
 func (*Watch) ProtoMessage()    {}
 func (*Watch) Descriptor() ([]byte, []int) {
+<<<<<<< HEAD
 	return fileDescriptor_auth_e02df4a36033d12b, []int{1}
+=======
+<<<<<<< HEAD
+	return fileDescriptor_auth_55c2a49deb8c39e6, []int{1}
+=======
+	return fileDescriptor_auth_e02df4a36033d12b, []int{1}
+>>>>>>> 657d58b88... Fix.
+>>>>>>> rjones/aap-proc
 }
 func (m *Watch) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -641,7 +665,15 @@ func (m *WatchKind) Reset()         { *m = WatchKind{} }
 func (m *WatchKind) String() string { return proto.CompactTextString(m) }
 func (*WatchKind) ProtoMessage()    {}
 func (*WatchKind) Descriptor() ([]byte, []int) {
+<<<<<<< HEAD
 	return fileDescriptor_auth_e02df4a36033d12b, []int{2}
+=======
+<<<<<<< HEAD
+	return fileDescriptor_auth_55c2a49deb8c39e6, []int{2}
+=======
+	return fileDescriptor_auth_e02df4a36033d12b, []int{2}
+>>>>>>> 657d58b88... Fix.
+>>>>>>> rjones/aap-proc
 }
 func (m *WatchKind) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -713,7 +745,15 @@ func (m *Certs) Reset()         { *m = Certs{} }
 func (m *Certs) String() string { return proto.CompactTextString(m) }
 func (*Certs) ProtoMessage()    {}
 func (*Certs) Descriptor() ([]byte, []int) {
+<<<<<<< HEAD
 	return fileDescriptor_auth_e02df4a36033d12b, []int{3}
+=======
+<<<<<<< HEAD
+	return fileDescriptor_auth_55c2a49deb8c39e6, []int{3}
+=======
+	return fileDescriptor_auth_e02df4a36033d12b, []int{3}
+>>>>>>> 657d58b88... Fix.
+>>>>>>> rjones/aap-proc
 }
 func (m *Certs) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -787,7 +827,15 @@ func (m *UserCertsRequest) Reset()         { *m = UserCertsRequest{} }
 func (m *UserCertsRequest) String() string { return proto.CompactTextString(m) }
 func (*UserCertsRequest) ProtoMessage()    {}
 func (*UserCertsRequest) Descriptor() ([]byte, []int) {
+<<<<<<< HEAD
 	return fileDescriptor_auth_e02df4a36033d12b, []int{4}
+=======
+<<<<<<< HEAD
+	return fileDescriptor_auth_55c2a49deb8c39e6, []int{4}
+=======
+	return fileDescriptor_auth_e02df4a36033d12b, []int{4}
+>>>>>>> 657d58b88... Fix.
+>>>>>>> rjones/aap-proc
 }
 func (m *UserCertsRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -873,7 +921,15 @@ func (m *GetUserRequest) Reset()         { *m = GetUserRequest{} }
 func (m *GetUserRequest) String() string { return proto.CompactTextString(m) }
 func (*GetUserRequest) ProtoMessage()    {}
 func (*GetUserRequest) Descriptor() ([]byte, []int) {
+<<<<<<< HEAD
 	return fileDescriptor_auth_e02df4a36033d12b, []int{5}
+=======
+<<<<<<< HEAD
+	return fileDescriptor_auth_55c2a49deb8c39e6, []int{5}
+=======
+	return fileDescriptor_auth_e02df4a36033d12b, []int{5}
+>>>>>>> 657d58b88... Fix.
+>>>>>>> rjones/aap-proc
 }
 func (m *GetUserRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -929,7 +985,15 @@ func (m *GetUsersRequest) Reset()         { *m = GetUsersRequest{} }
 func (m *GetUsersRequest) String() string { return proto.CompactTextString(m) }
 func (*GetUsersRequest) ProtoMessage()    {}
 func (*GetUsersRequest) Descriptor() ([]byte, []int) {
+<<<<<<< HEAD
 	return fileDescriptor_auth_e02df4a36033d12b, []int{6}
+=======
+<<<<<<< HEAD
+	return fileDescriptor_auth_55c2a49deb8c39e6, []int{6}
+=======
+	return fileDescriptor_auth_e02df4a36033d12b, []int{6}
+>>>>>>> 657d58b88... Fix.
+>>>>>>> rjones/aap-proc
 }
 func (m *GetUsersRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -977,7 +1041,15 @@ func (m *AccessRequests) Reset()         { *m = AccessRequests{} }
 func (m *AccessRequests) String() string { return proto.CompactTextString(m) }
 func (*AccessRequests) ProtoMessage()    {}
 func (*AccessRequests) Descriptor() ([]byte, []int) {
+<<<<<<< HEAD
 	return fileDescriptor_auth_e02df4a36033d12b, []int{7}
+=======
+<<<<<<< HEAD
+	return fileDescriptor_auth_55c2a49deb8c39e6, []int{7}
+=======
+	return fileDescriptor_auth_e02df4a36033d12b, []int{7}
+>>>>>>> 657d58b88... Fix.
+>>>>>>> rjones/aap-proc
 }
 func (m *AccessRequests) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1025,7 +1097,15 @@ func (m *PluginDataSeq) Reset()         { *m = PluginDataSeq{} }
 func (m *PluginDataSeq) String() string { return proto.CompactTextString(m) }
 func (*PluginDataSeq) ProtoMessage()    {}
 func (*PluginDataSeq) Descriptor() ([]byte, []int) {
+<<<<<<< HEAD
 	return fileDescriptor_auth_e02df4a36033d12b, []int{8}
+=======
+<<<<<<< HEAD
+	return fileDescriptor_auth_55c2a49deb8c39e6, []int{8}
+=======
+	return fileDescriptor_auth_e02df4a36033d12b, []int{8}
+>>>>>>> 657d58b88... Fix.
+>>>>>>> rjones/aap-proc
 }
 func (m *PluginDataSeq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1081,7 +1161,15 @@ func (m *RequestStateSetter) Reset()         { *m = RequestStateSetter{} }
 func (m *RequestStateSetter) String() string { return proto.CompactTextString(m) }
 func (*RequestStateSetter) ProtoMessage()    {}
 func (*RequestStateSetter) Descriptor() ([]byte, []int) {
+<<<<<<< HEAD
 	return fileDescriptor_auth_e02df4a36033d12b, []int{9}
+=======
+<<<<<<< HEAD
+	return fileDescriptor_auth_55c2a49deb8c39e6, []int{9}
+=======
+	return fileDescriptor_auth_e02df4a36033d12b, []int{9}
+>>>>>>> 657d58b88... Fix.
+>>>>>>> rjones/aap-proc
 }
 func (m *RequestStateSetter) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1143,7 +1231,15 @@ func (m *RequestID) Reset()         { *m = RequestID{} }
 func (m *RequestID) String() string { return proto.CompactTextString(m) }
 func (*RequestID) ProtoMessage()    {}
 func (*RequestID) Descriptor() ([]byte, []int) {
+<<<<<<< HEAD
 	return fileDescriptor_auth_e02df4a36033d12b, []int{10}
+=======
+<<<<<<< HEAD
+	return fileDescriptor_auth_55c2a49deb8c39e6, []int{10}
+=======
+	return fileDescriptor_auth_e02df4a36033d12b, []int{10}
+>>>>>>> 657d58b88... Fix.
+>>>>>>> rjones/aap-proc
 }
 func (m *RequestID) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1193,7 +1289,15 @@ func (m *RotateResetPasswordTokenSecretsRequest) Reset() {
 func (m *RotateResetPasswordTokenSecretsRequest) String() string { return proto.CompactTextString(m) }
 func (*RotateResetPasswordTokenSecretsRequest) ProtoMessage()    {}
 func (*RotateResetPasswordTokenSecretsRequest) Descriptor() ([]byte, []int) {
+<<<<<<< HEAD
 	return fileDescriptor_auth_e02df4a36033d12b, []int{11}
+=======
+<<<<<<< HEAD
+	return fileDescriptor_auth_55c2a49deb8c39e6, []int{11}
+=======
+	return fileDescriptor_auth_e02df4a36033d12b, []int{11}
+>>>>>>> 657d58b88... Fix.
+>>>>>>> rjones/aap-proc
 }
 func (m *RotateResetPasswordTokenSecretsRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1241,7 +1345,15 @@ func (m *GetResetPasswordTokenRequest) Reset()         { *m = GetResetPasswordTo
 func (m *GetResetPasswordTokenRequest) String() string { return proto.CompactTextString(m) }
 func (*GetResetPasswordTokenRequest) ProtoMessage()    {}
 func (*GetResetPasswordTokenRequest) Descriptor() ([]byte, []int) {
+<<<<<<< HEAD
 	return fileDescriptor_auth_e02df4a36033d12b, []int{12}
+=======
+<<<<<<< HEAD
+	return fileDescriptor_auth_55c2a49deb8c39e6, []int{12}
+=======
+	return fileDescriptor_auth_e02df4a36033d12b, []int{12}
+>>>>>>> 657d58b88... Fix.
+>>>>>>> rjones/aap-proc
 }
 func (m *GetResetPasswordTokenRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1295,7 +1407,15 @@ func (m *CreateResetPasswordTokenRequest) Reset()         { *m = CreateResetPass
 func (m *CreateResetPasswordTokenRequest) String() string { return proto.CompactTextString(m) }
 func (*CreateResetPasswordTokenRequest) ProtoMessage()    {}
 func (*CreateResetPasswordTokenRequest) Descriptor() ([]byte, []int) {
+<<<<<<< HEAD
 	return fileDescriptor_auth_e02df4a36033d12b, []int{13}
+=======
+<<<<<<< HEAD
+	return fileDescriptor_auth_55c2a49deb8c39e6, []int{13}
+=======
+	return fileDescriptor_auth_e02df4a36033d12b, []int{13}
+>>>>>>> 657d58b88... Fix.
+>>>>>>> rjones/aap-proc
 }
 func (m *CreateResetPasswordTokenRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1356,7 +1476,15 @@ func (m *PingRequest) Reset()         { *m = PingRequest{} }
 func (m *PingRequest) String() string { return proto.CompactTextString(m) }
 func (*PingRequest) ProtoMessage()    {}
 func (*PingRequest) Descriptor() ([]byte, []int) {
+<<<<<<< HEAD
 	return fileDescriptor_auth_e02df4a36033d12b, []int{14}
+=======
+<<<<<<< HEAD
+	return fileDescriptor_auth_55c2a49deb8c39e6, []int{14}
+=======
+	return fileDescriptor_auth_e02df4a36033d12b, []int{14}
+>>>>>>> 657d58b88... Fix.
+>>>>>>> rjones/aap-proc
 }
 func (m *PingRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1400,7 +1528,15 @@ func (m *PingResponse) Reset()         { *m = PingResponse{} }
 func (m *PingResponse) String() string { return proto.CompactTextString(m) }
 func (*PingResponse) ProtoMessage()    {}
 func (*PingResponse) Descriptor() ([]byte, []int) {
+<<<<<<< HEAD
 	return fileDescriptor_auth_e02df4a36033d12b, []int{15}
+=======
+<<<<<<< HEAD
+	return fileDescriptor_auth_55c2a49deb8c39e6, []int{15}
+=======
+	return fileDescriptor_auth_e02df4a36033d12b, []int{15}
+>>>>>>> 657d58b88... Fix.
+>>>>>>> rjones/aap-proc
 }
 func (m *PingResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1456,7 +1592,15 @@ func (m *DeleteUserRequest) Reset()         { *m = DeleteUserRequest{} }
 func (m *DeleteUserRequest) String() string { return proto.CompactTextString(m) }
 func (*DeleteUserRequest) ProtoMessage()    {}
 func (*DeleteUserRequest) Descriptor() ([]byte, []int) {
+<<<<<<< HEAD
 	return fileDescriptor_auth_e02df4a36033d12b, []int{16}
+=======
+<<<<<<< HEAD
+	return fileDescriptor_auth_55c2a49deb8c39e6, []int{16}
+=======
+	return fileDescriptor_auth_e02df4a36033d12b, []int{16}
+>>>>>>> 657d58b88... Fix.
+>>>>>>> rjones/aap-proc
 }
 func (m *DeleteUserRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1510,7 +1654,15 @@ func (m *GetAppRequest) Reset()         { *m = GetAppRequest{} }
 func (m *GetAppRequest) String() string { return proto.CompactTextString(m) }
 func (*GetAppRequest) ProtoMessage()    {}
 func (*GetAppRequest) Descriptor() ([]byte, []int) {
+<<<<<<< HEAD
 	return fileDescriptor_auth_e02df4a36033d12b, []int{17}
+=======
+<<<<<<< HEAD
+	return fileDescriptor_auth_55c2a49deb8c39e6, []int{17}
+=======
+	return fileDescriptor_auth_e02df4a36033d12b, []int{17}
+>>>>>>> 657d58b88... Fix.
+>>>>>>> rjones/aap-proc
 }
 func (m *GetAppRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1562,7 +1714,15 @@ func (m *GetAppRequest) GetSkipValidation() bool {
 
 // GetAppResponse is the response message to fetch a single application.
 type GetAppResponse struct {
+<<<<<<< HEAD
 	// App is an services.Server that represents an application.
+=======
+<<<<<<< HEAD
+	// App is an application.
+=======
+	// App is an services.Server that represents an application.
+>>>>>>> 657d58b88... Fix.
+>>>>>>> rjones/aap-proc
 	App                  *services.ServerV2 `protobuf:"bytes,1,opt,name=App" json:"app"`
 	XXX_NoUnkeyedLiteral struct{}           `json:"-"`
 	XXX_unrecognized     []byte             `json:"-"`
@@ -1573,7 +1733,15 @@ func (m *GetAppResponse) Reset()         { *m = GetAppResponse{} }
 func (m *GetAppResponse) String() string { return proto.CompactTextString(m) }
 func (*GetAppResponse) ProtoMessage()    {}
 func (*GetAppResponse) Descriptor() ([]byte, []int) {
+<<<<<<< HEAD
 	return fileDescriptor_auth_e02df4a36033d12b, []int{18}
+=======
+<<<<<<< HEAD
+	return fileDescriptor_auth_55c2a49deb8c39e6, []int{18}
+=======
+	return fileDescriptor_auth_e02df4a36033d12b, []int{18}
+>>>>>>> 657d58b88... Fix.
+>>>>>>> rjones/aap-proc
 }
 func (m *GetAppResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1625,7 +1793,15 @@ func (m *GetAppsRequest) Reset()         { *m = GetAppsRequest{} }
 func (m *GetAppsRequest) String() string { return proto.CompactTextString(m) }
 func (*GetAppsRequest) ProtoMessage()    {}
 func (*GetAppsRequest) Descriptor() ([]byte, []int) {
+<<<<<<< HEAD
 	return fileDescriptor_auth_e02df4a36033d12b, []int{19}
+=======
+<<<<<<< HEAD
+	return fileDescriptor_auth_55c2a49deb8c39e6, []int{19}
+=======
+	return fileDescriptor_auth_e02df4a36033d12b, []int{19}
+>>>>>>> 657d58b88... Fix.
+>>>>>>> rjones/aap-proc
 }
 func (m *GetAppsRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1670,7 +1846,15 @@ func (m *GetAppsRequest) GetSkipValidation() bool {
 
 // GetAppsResponse is the response message for all registered applications.
 type GetAppsResponse struct {
+<<<<<<< HEAD
 	// Apps is a slice of services.Server that represent applications.
+=======
+<<<<<<< HEAD
+	// Apps is a slice of applications.
+=======
+	// Apps is a slice of services.Server that represent applications.
+>>>>>>> 657d58b88... Fix.
+>>>>>>> rjones/aap-proc
 	Apps                 []*services.ServerV2 `protobuf:"bytes,1,rep,name=Apps" json:"apps"`
 	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
 	XXX_unrecognized     []byte               `json:"-"`
@@ -1681,7 +1865,15 @@ func (m *GetAppsResponse) Reset()         { *m = GetAppsResponse{} }
 func (m *GetAppsResponse) String() string { return proto.CompactTextString(m) }
 func (*GetAppsResponse) ProtoMessage()    {}
 func (*GetAppsResponse) Descriptor() ([]byte, []int) {
+<<<<<<< HEAD
 	return fileDescriptor_auth_e02df4a36033d12b, []int{20}
+=======
+<<<<<<< HEAD
+	return fileDescriptor_auth_55c2a49deb8c39e6, []int{20}
+=======
+	return fileDescriptor_auth_e02df4a36033d12b, []int{20}
+>>>>>>> 657d58b88... Fix.
+>>>>>>> rjones/aap-proc
 }
 func (m *GetAppsResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1729,7 +1921,15 @@ func (m *UpsertAppRequest) Reset()         { *m = UpsertAppRequest{} }
 func (m *UpsertAppRequest) String() string { return proto.CompactTextString(m) }
 func (*UpsertAppRequest) ProtoMessage()    {}
 func (*UpsertAppRequest) Descriptor() ([]byte, []int) {
+<<<<<<< HEAD
 	return fileDescriptor_auth_e02df4a36033d12b, []int{21}
+=======
+<<<<<<< HEAD
+	return fileDescriptor_auth_55c2a49deb8c39e6, []int{21}
+=======
+	return fileDescriptor_auth_e02df4a36033d12b, []int{21}
+>>>>>>> 657d58b88... Fix.
+>>>>>>> rjones/aap-proc
 }
 func (m *UpsertAppRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1780,7 +1980,15 @@ func (m *DeleteAppRequest) Reset()         { *m = DeleteAppRequest{} }
 func (m *DeleteAppRequest) String() string { return proto.CompactTextString(m) }
 func (*DeleteAppRequest) ProtoMessage()    {}
 func (*DeleteAppRequest) Descriptor() ([]byte, []int) {
+<<<<<<< HEAD
 	return fileDescriptor_auth_e02df4a36033d12b, []int{22}
+=======
+<<<<<<< HEAD
+	return fileDescriptor_auth_55c2a49deb8c39e6, []int{22}
+=======
+	return fileDescriptor_auth_e02df4a36033d12b, []int{22}
+>>>>>>> 657d58b88... Fix.
+>>>>>>> rjones/aap-proc
 }
 func (m *DeleteAppRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -1836,7 +2044,15 @@ func (m *DeleteAllAppsRequest) Reset()         { *m = DeleteAllAppsRequest{} }
 func (m *DeleteAllAppsRequest) String() string { return proto.CompactTextString(m) }
 func (*DeleteAllAppsRequest) ProtoMessage()    {}
 func (*DeleteAllAppsRequest) Descriptor() ([]byte, []int) {
+<<<<<<< HEAD
 	return fileDescriptor_auth_e02df4a36033d12b, []int{23}
+=======
+<<<<<<< HEAD
+	return fileDescriptor_auth_55c2a49deb8c39e6, []int{23}
+=======
+	return fileDescriptor_auth_e02df4a36033d12b, []int{23}
+>>>>>>> 657d58b88... Fix.
+>>>>>>> rjones/aap-proc
 }
 func (m *DeleteAllAppsRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -3760,6 +3976,49 @@ func (m *GetAppsRequest) MarshalTo(dAtA []byte) (int, error) {
 			dAtA[i] = 0
 		}
 		i++
+<<<<<<< HEAD
+	}
+	if m.XXX_unrecognized != nil {
+		i += copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	return i, nil
+}
+
+func (m *GetAppsResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *GetAppsResponse) MarshalTo(dAtA []byte) (int, error) {
+	var i int
+	_ = i
+	var l int
+	_ = l
+	if len(m.Apps) > 0 {
+		for _, msg := range m.Apps {
+			dAtA[i] = 0xa
+			i++
+			i = encodeVarintAuth(dAtA, i, uint64(msg.Size()))
+			n, err := msg.MarshalTo(dAtA[i:])
+			if err != nil {
+				return 0, err
+			}
+			i += n
+		}
+	}
+	if m.XXX_unrecognized != nil {
+		i += copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	return i, nil
+}
+
+func (m *UpsertAppRequest) Marshal() (dAtA []byte, err error) {
+=======
 	}
 	if m.XXX_unrecognized != nil {
 		i += copy(dAtA[i:], m.XXX_unrecognized)
@@ -3806,6 +4065,197 @@ func (m *UpsertAppRequest) Marshal() (dAtA []byte, err error) {
 	n, err := m.MarshalTo(dAtA)
 	if err != nil {
 		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *UpsertAppRequest) MarshalTo(dAtA []byte) (int, error) {
+	var i int
+	_ = i
+	var l int
+	_ = l
+	if m.App != nil {
+		dAtA[i] = 0xa
+		i++
+		i = encodeVarintAuth(dAtA, i, uint64(m.App.Size()))
+		n17, err := m.App.MarshalTo(dAtA[i:])
+		if err != nil {
+			return 0, err
+		}
+		i += n17
+	}
+	if m.XXX_unrecognized != nil {
+		i += copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	return i, nil
+}
+
+func (m *DeleteAppRequest) Marshal() (dAtA []byte, err error) {
+>>>>>>> rjones/aap-proc
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
+	if err != nil {
+		return nil, err
+<<<<<<< HEAD
+=======
+	}
+	return dAtA[:n], nil
+}
+
+func (m *DeleteAppRequest) MarshalTo(dAtA []byte) (int, error) {
+	var i int
+	_ = i
+	var l int
+	_ = l
+	if len(m.Namespace) > 0 {
+		dAtA[i] = 0xa
+		i++
+		i = encodeVarintAuth(dAtA, i, uint64(len(m.Namespace)))
+		i += copy(dAtA[i:], m.Namespace)
+	}
+	if len(m.Name) > 0 {
+		dAtA[i] = 0x12
+		i++
+		i = encodeVarintAuth(dAtA, i, uint64(len(m.Name)))
+		i += copy(dAtA[i:], m.Name)
+	}
+	if m.XXX_unrecognized != nil {
+		i += copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	return i, nil
+}
+
+func (m *DeleteAllAppsRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalTo(dAtA)
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *DeleteAllAppsRequest) MarshalTo(dAtA []byte) (int, error) {
+	var i int
+	_ = i
+	var l int
+	_ = l
+	if len(m.Namespace) > 0 {
+		dAtA[i] = 0xa
+		i++
+		i = encodeVarintAuth(dAtA, i, uint64(len(m.Namespace)))
+		i += copy(dAtA[i:], m.Namespace)
+	}
+	if m.XXX_unrecognized != nil {
+		i += copy(dAtA[i:], m.XXX_unrecognized)
+	}
+	return i, nil
+}
+
+func encodeVarintAuth(dAtA []byte, offset int, v uint64) int {
+	for v >= 1<<7 {
+		dAtA[offset] = uint8(v&0x7f | 0x80)
+		v >>= 7
+		offset++
+	}
+	dAtA[offset] = uint8(v)
+	return offset + 1
+}
+func (m *Event) Size() (n int) {
+	var l int
+	_ = l
+	if m.Type != 0 {
+		n += 1 + sovAuth(uint64(m.Type))
+	}
+	if m.Resource != nil {
+		n += m.Resource.Size()
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *Event_ResourceHeader) Size() (n int) {
+	var l int
+	_ = l
+	if m.ResourceHeader != nil {
+		l = m.ResourceHeader.Size()
+		n += 1 + l + sovAuth(uint64(l))
+	}
+	return n
+}
+func (m *Event_CertAuthority) Size() (n int) {
+	var l int
+	_ = l
+	if m.CertAuthority != nil {
+		l = m.CertAuthority.Size()
+		n += 1 + l + sovAuth(uint64(l))
+	}
+	return n
+}
+func (m *Event_StaticTokens) Size() (n int) {
+	var l int
+	_ = l
+	if m.StaticTokens != nil {
+		l = m.StaticTokens.Size()
+		n += 1 + l + sovAuth(uint64(l))
+	}
+	return n
+}
+func (m *Event_ProvisionToken) Size() (n int) {
+	var l int
+	_ = l
+	if m.ProvisionToken != nil {
+		l = m.ProvisionToken.Size()
+		n += 1 + l + sovAuth(uint64(l))
+	}
+	return n
+}
+func (m *Event_ClusterName) Size() (n int) {
+	var l int
+	_ = l
+	if m.ClusterName != nil {
+		l = m.ClusterName.Size()
+		n += 1 + l + sovAuth(uint64(l))
+	}
+	return n
+}
+func (m *Event_ClusterConfig) Size() (n int) {
+	var l int
+	_ = l
+	if m.ClusterConfig != nil {
+		l = m.ClusterConfig.Size()
+		n += 1 + l + sovAuth(uint64(l))
+	}
+	return n
+}
+func (m *Event_User) Size() (n int) {
+	var l int
+	_ = l
+	if m.User != nil {
+		l = m.User.Size()
+		n += 1 + l + sovAuth(uint64(l))
+	}
+	return n
+}
+func (m *Event_Role) Size() (n int) {
+	var l int
+	_ = l
+	if m.Role != nil {
+		l = m.Role.Size()
+		n += 1 + l + sovAuth(uint64(l))
+	}
+	return n
+}
+func (m *Event_Namespace) Size() (n int) {
+	var l int
+	_ = l
+	if m.Namespace != nil {
+		l = m.Namespace.Size()
+		n += 1 + l + sovAuth(uint64(l))
+>>>>>>> rjones/aap-proc
 	}
 	return dAtA[:n], nil
 }
@@ -4317,6 +4767,107 @@ func (m *GetAppRequest) Size() (n int) {
 	}
 	if m.XXX_unrecognized != nil {
 		n += len(m.XXX_unrecognized)
+<<<<<<< HEAD
+=======
+	}
+	return n
+}
+
+func (m *GetAppResponse) Size() (n int) {
+	var l int
+	_ = l
+	if m.App != nil {
+		l = m.App.Size()
+		n += 1 + l + sovAuth(uint64(l))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *GetAppsRequest) Size() (n int) {
+	var l int
+	_ = l
+	l = len(m.Namespace)
+	if l > 0 {
+		n += 1 + l + sovAuth(uint64(l))
+	}
+	if m.SkipValidation {
+		n += 2
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *GetAppsResponse) Size() (n int) {
+	var l int
+	_ = l
+	if len(m.Apps) > 0 {
+		for _, e := range m.Apps {
+			l = e.Size()
+			n += 1 + l + sovAuth(uint64(l))
+		}
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *UpsertAppRequest) Size() (n int) {
+	var l int
+	_ = l
+	if m.App != nil {
+		l = m.App.Size()
+		n += 1 + l + sovAuth(uint64(l))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *DeleteAppRequest) Size() (n int) {
+	var l int
+	_ = l
+	l = len(m.Namespace)
+	if l > 0 {
+		n += 1 + l + sovAuth(uint64(l))
+	}
+	l = len(m.Name)
+	if l > 0 {
+		n += 1 + l + sovAuth(uint64(l))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func (m *DeleteAllAppsRequest) Size() (n int) {
+	var l int
+	_ = l
+	l = len(m.Namespace)
+	if l > 0 {
+		n += 1 + l + sovAuth(uint64(l))
+	}
+	if m.XXX_unrecognized != nil {
+		n += len(m.XXX_unrecognized)
+	}
+	return n
+}
+
+func sovAuth(x uint64) (n int) {
+	for {
+		n++
+		x >>= 7
+		if x == 0 {
+			break
+		}
+>>>>>>> rjones/aap-proc
 	}
 	return n
 }
@@ -7316,6 +7867,674 @@ func (m *DeleteAllAppsRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
+func (m *GetAppRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowAuth
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= (uint64(b) & 0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: GetAppRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: GetAppRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Namespace", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowAuth
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= (uint64(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthAuth
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Namespace = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Name", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowAuth
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= (uint64(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthAuth
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Name = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field SkipValidation", wireType)
+			}
+			var v int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowAuth
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= (int(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.SkipValidation = bool(v != 0)
+		default:
+			iNdEx = preIndex
+			skippy, err := skipAuth(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthAuth
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *GetAppResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowAuth
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= (uint64(b) & 0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: GetAppResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: GetAppResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field App", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowAuth
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= (int(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthAuth
+			}
+			postIndex := iNdEx + msglen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.App == nil {
+				m.App = &services.ServerV2{}
+			}
+			if err := m.App.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipAuth(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthAuth
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *GetAppsRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowAuth
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= (uint64(b) & 0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: GetAppsRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: GetAppsRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Namespace", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowAuth
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= (uint64(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthAuth
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Namespace = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field SkipValidation", wireType)
+			}
+			var v int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowAuth
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= (int(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.SkipValidation = bool(v != 0)
+		default:
+			iNdEx = preIndex
+			skippy, err := skipAuth(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthAuth
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *GetAppsResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowAuth
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= (uint64(b) & 0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: GetAppsResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: GetAppsResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Apps", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowAuth
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= (int(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthAuth
+			}
+			postIndex := iNdEx + msglen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Apps = append(m.Apps, &services.ServerV2{})
+			if err := m.Apps[len(m.Apps)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipAuth(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthAuth
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *UpsertAppRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowAuth
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= (uint64(b) & 0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: UpsertAppRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: UpsertAppRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field App", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowAuth
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= (int(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthAuth
+			}
+			postIndex := iNdEx + msglen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.App == nil {
+				m.App = &services.ServerV2{}
+			}
+			if err := m.App.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipAuth(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthAuth
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *DeleteAppRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowAuth
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= (uint64(b) & 0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: DeleteAppRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: DeleteAppRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Namespace", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowAuth
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= (uint64(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthAuth
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Namespace = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Name", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowAuth
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= (uint64(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthAuth
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Name = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipAuth(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthAuth
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *DeleteAllAppsRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowAuth
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= (uint64(b) & 0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: DeleteAllAppsRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: DeleteAllAppsRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Namespace", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowAuth
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= (uint64(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthAuth
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Namespace = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipAuth(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthAuth
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
 func skipAuth(dAtA []byte) (n int, err error) {
 	l := len(dAtA)
 	iNdEx := 0
@@ -7421,9 +8640,21 @@ var (
 	ErrIntOverflowAuth   = fmt.Errorf("proto: integer overflow")
 )
 
+<<<<<<< HEAD
 func init() { proto.RegisterFile("auth.proto", fileDescriptor_auth_e02df4a36033d12b) }
 
 var fileDescriptor_auth_e02df4a36033d12b = []byte{
+=======
+<<<<<<< HEAD
+func init() { proto.RegisterFile("auth.proto", fileDescriptor_auth_55c2a49deb8c39e6) }
+
+var fileDescriptor_auth_55c2a49deb8c39e6 = []byte{
+=======
+func init() { proto.RegisterFile("auth.proto", fileDescriptor_auth_e02df4a36033d12b) }
+
+var fileDescriptor_auth_e02df4a36033d12b = []byte{
+>>>>>>> 657d58b88... Fix.
+>>>>>>> rjones/aap-proc
 	// 1978 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x58, 0xcd, 0x6f, 0xdb, 0xc8,
 	0x15, 0x0f, 0x25, 0x7f, 0x48, 0x4f, 0xb6, 0x56, 0x19, 0x3b, 0x0e, 0xa3, 0x38, 0x66, 0xc0, 0x60,
